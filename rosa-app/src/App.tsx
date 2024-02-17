@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 const SUPABASE_URL = "https://murmuncqoiskpgedjihz.supabase.co"
@@ -12,7 +10,6 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLIC_ANON_KEY)
 
 
 function App() {
-  const [count, setCount] = useState(0)
   const [session, setSession] = useState(null)
 
   useEffect(() => {
