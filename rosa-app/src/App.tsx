@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import './App.css'
+import Chat from './Chat'
 
 const SUPABASE_URL = "https://murmuncqoiskpgedjihz.supabase.co"
 const SUPABASE_PUBLIC_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11cm11bmNxb2lza3BnZWRqaWh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDgyMDA3MzEsImV4cCI6MjAyMzc3NjczMX0.humU7pw4UJRiPhxekypsrjew_xcQIYncJiyamrrHrIQ"
@@ -36,7 +37,7 @@ function App() {
     )
   }
   else {
-    return (<div>Logged in!</div>)
+    return (<Chat supabaseClient={supabase} session={session} />)
   }
 }
 
