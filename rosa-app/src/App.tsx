@@ -26,17 +26,42 @@ function App() {
     return () => subscription.unsubscribe()
   }, [])
 
+  const loginWithFacebook = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'facebook' 
+    }) 
+    
+    if (error) {
+      console.error('Error logging in:', error.message);
+    }
+  };
+
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.error('Error logging out:', error.message);
+    }
+  };
+
   if (!session) {
     return (
       <div>
         <h1>Hi, I'm Rosa</h1>
         <p>Log in to get started. </p>
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={["facebook"]}/>
+        <button onClick={loginWithFacebook}>Login with Facebook</button>
+        {/* <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={["facebook"]}/> */}
       </div>
     )
   }
   else {
-    return (<div>Logged in!</div>)
+    return (
+    <div>
+      <div>Logged in!</div>
+      <p>Hi, {session.user.email}</p>
+      <button onClick={logout}>Logout</button>
+    </div>
+    )
   }
 }
 
